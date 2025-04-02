@@ -1,0 +1,8 @@
+﻿@using Practical19.ViewModels
+@model LoginViewModel
+<form asp-action="Login">
+    <input asp-for="Email" placeholder="Email" required />
+    <input asp-for="Password" type="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+</form>
+
