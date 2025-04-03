@@ -1,10 +1,38 @@
-﻿@using Practical19.ViewModels
+@using Practical19.ViewModels
 @model RegisterViewModel
-<form asp-action="Register">
-    <input asp-for="FullName" placeholder="Full Name" required />
-    <input asp-for="Email" placeholder="Email" required />
-    <input asp-for="Password" type="password" placeholder="Password" required />
-    <input asp-for="ConfirmPassword" type="password" placeholder="Confirm Password" required />
-    <button type="submit">Register</button>
+
+<form asp-action="Register" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="FullName"></label>
+        <input asp-for="FullName" class="form-control" placeholder="Full Name" required />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" placeholder="Email" required />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" class="form-control" placeholder="Password" required />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm Password" required />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
 </form>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
