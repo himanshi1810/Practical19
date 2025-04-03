@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Practical19.Data;
 using Practical19.Models;
@@ -40,7 +40,7 @@ app.MapControllerRoute(
 
 app.Run();
 
-// 🔹 Function to seed roles
+// Function to seed roles
 async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
 {
     string[] roleNames = { "Admin", "User" };
