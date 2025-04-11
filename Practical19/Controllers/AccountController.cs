@@ -17,11 +17,9 @@ namespace Practical19.Controllers
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
-
         // REGISTER VIEW
         [HttpGet]
         public IActionResult Register() => View();
-
         // REGISTER LOGIC
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -57,15 +55,12 @@ namespace Practical19.Controllers
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
             // If we got here, something went wrong
             return View(model);
         }
-
         // LOGIN VIEW
         [HttpGet]
         public IActionResult Login() => View();
-
         // LOGIN LOGIC
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -85,10 +80,6 @@ namespace Practical19.Controllers
                 {
                     return LocalRedirect(returnUrl);
                 }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                }
                 if (result.IsLockedOut)
                 {
                     ModelState.AddModelError(string.Empty, "Account locked out. Please try again later.");
@@ -103,15 +94,12 @@ namespace Practical19.Controllers
 
             return View(model);
         }
-
-
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             Response.Cookies.Delete(".AspNetCore.Identity.Application"); 
             return RedirectToAction("Index", "Home");
         }
-
         // ACCESS DENIED
         public IActionResult AccessDenied() => View();
 
